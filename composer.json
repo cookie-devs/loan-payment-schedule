@@ -1,0 +1,27 @@
+{
+  "name": "kaurikk/loan-payment-schedule",
+  "description": "[Loan payment schedule library]",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kauri Kont-Kontson"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Kauri\\Loan\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kauri\\Loan\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=6.0"
+  }
+}
