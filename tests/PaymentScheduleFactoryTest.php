@@ -22,15 +22,7 @@ class PaymentScheduleFactoryTest extends TestCase
         $schedule = PaymentScheduleFactory::generate($config);
         $paymentDates = $schedule->getPaymentDates();
 
-        /**
-         * @var int $k
-         * @var \DateTime $item
-         */
-        foreach ($paymentDates as $k => $item) {
-            if ($item instanceof \DateTimeInterface) {
-                $this->assertEquals($item->format('Y-m-d'), $dates[$k]);
-            }
-        }
+        $this->validateDates($paymentDates, $dates);
     }
 
     public function datesProvider()
@@ -56,6 +48,15 @@ class PaymentScheduleFactoryTest extends TestCase
         $schedule = PaymentScheduleFactory::generate($config);
         $paymentDates = $schedule->getPaymentDates();
 
+        $this->validateDates($paymentDates, $dates);
+    }
+
+    /**
+     * @param array $paymentDates
+     * @param array $dates
+     */
+    private function validateDates(array $paymentDates, array $dates) : void
+    {
         /**
          * @var int $k
          * @var \DateTime $item
@@ -65,7 +66,6 @@ class PaymentScheduleFactoryTest extends TestCase
                 $this->assertEquals($item->format('Y-m-d'), $dates[$k]);
             }
         }
-
     }
 
 }
