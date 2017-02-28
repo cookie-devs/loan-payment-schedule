@@ -53,11 +53,11 @@ class PaymentScheduleConfig implements PaymentScheduleConfigInterface
 
         foreach ($intervalMultiplier as $pattern => $multiplier) {
             if ($dateInterval->format('%' . $pattern) > 0) {
-                $intervalLength = $intervalLength + (int) $dateInterval->format('%' . $pattern) * $multiplier;
+                $intervalLength = $intervalLength + (int)$dateInterval->format('%' . $pattern) * $multiplier;
             }
         }
 
-        return (int) $intervalLength;
+        return (int)$intervalLength;
     }
 
     /**

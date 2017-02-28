@@ -23,17 +23,16 @@ class PaymentScheduleFactory implements PaymentScheduleFactoryInterface
         $noOfPayments = $paymentScheduleConfig->getNoOfPayments();
         $firstPaymentDate = $paymentScheduleConfig->getFirstPaymentDate();
 
-        if (!is_null($firstPaymentDate)){
+        if (!is_null($firstPaymentDate)) {
             $startDate = $firstPaymentDate;
             $schedule->add($startDate, 1);
         }
 
-        $period = new \DatePeriod($startDate, $dateInterval, ($noOfPayments - $schedule->getNoOfPayments()));
+        $period = new \DatePeriod($startDate, $dateInterval, ($noOfPayments - $schedule->getNoOfPayments()),
+            \DatePeriod::EXCLUDE_START_DATE);
 
         foreach ($period as $iteration => $date) {
-            if ($date != $startDate) {
-                $schedule->add($date, $schedule->getNoOfPayments() + 1);
-            }
+            $schedule->add($date, $schedule->getNoOfPayments() + 1);
         }
 
         return $schedule;

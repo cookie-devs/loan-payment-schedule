@@ -31,13 +31,17 @@ class PaymentsScheduleTest extends TestCase
 
     public function testPaymentScheduleConfig()
     {
+        $noOfPayments = 3;
         $startDate = new \DateTime();
         $firstPaymentDate = new \DateTime();
-        $config = new PaymentScheduleConfig(3, $startDate, 'P1D', $firstPaymentDate);
+        $config = new PaymentScheduleConfig($noOfPayments, $startDate, 'P1D', $firstPaymentDate);
+
+        $this->assertEquals(1, $config->getAverageIntervalLength());
 
         $schedule = PaymentScheduleFactory::generate($config);
 
-        $this->assertEquals($schedule->getNoOfPayments(), 3);
+        $this->assertEquals($schedule->getNoOfPayments(), $noOfPayments);
+        $this->assertEquals($noOfPayments, $schedule->getConfig()->getNoOfPayments());
     }
 
     public function datesProvider()
